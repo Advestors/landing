@@ -122,7 +122,6 @@ export default function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
               viewport={{ once: true }}
-              whileHover={{ y: -12, scale: 1.02 }}
             >
               {/* Stat badge */}
               <div className={`absolute top-3 sm:top-4 right-3 sm:right-4 bg-gradient-to-r ${colorMap[feature.color].bg} text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold`}>

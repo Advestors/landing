@@ -95,7 +95,7 @@ export default function HowItWorks() {
               className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"
               initial={{ width: 0 }}
               whileInView={{ width: '100%' }}
-              transition={{ duration: 2, ease: 'easeOut', delay: 0.5 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}
               viewport={{ once: true }}
             />
           </div>
@@ -109,7 +109,6 @@ export default function HowItWorks() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2, ease: 'easeOut' }}
                 viewport={{ once: true }}
-                whileHover={{ y: -8 }}
               >
                 {/* Step number */}
                 <div className={`w-12 h-12 sm:w-16 sm:h-16 ${colorMap[step.color].bg} rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg`}>
