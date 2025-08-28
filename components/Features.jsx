@@ -95,29 +95,29 @@ const colorMap = {
 
 export default function Features() {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-6">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div 
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl font-black text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4 sm:mb-6">
             Why <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Everyone</span> is Switching
           </h2>
-          <p className="text-2xl text-gray-600 max-w-4xl mx-auto font-medium">
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto font-medium px-4 sm:px-0">
             We've built the most advanced advertising platform in history. 
             <span className="text-indigo-700 font-bold"> Join the revolution.</span>
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {features.map((feature, index) => (
             <motion.div 
               key={index}
-              className={`group bg-white p-8 rounded-3xl border-2 ${colorMap[feature.color].border} shadow-lg hover:shadow-2xl ${colorMap[feature.color].glow} transition-all duration-300 cursor-pointer relative overflow-hidden`}
+              className={`group bg-white p-6 sm:p-8 rounded-2xl sm:rounded-3xl border-2 ${colorMap[feature.color].border} shadow-lg hover:shadow-2xl ${colorMap[feature.color].glow} transition-all duration-300 cursor-pointer relative overflow-hidden`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
@@ -125,20 +125,20 @@ export default function Features() {
               whileHover={{ y: -12, scale: 1.02 }}
             >
               {/* Stat badge */}
-              <div className={`absolute top-4 right-4 bg-gradient-to-r ${colorMap[feature.color].bg} text-white px-3 py-1 rounded-full text-sm font-bold`}>
+              <div className={`absolute top-3 sm:top-4 right-3 sm:right-4 bg-gradient-to-r ${colorMap[feature.color].bg} text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold`}>
                 {feature.stat}
               </div>
 
               {/* Icon */}
-              <div className={`w-16 h-16 bg-gradient-to-br ${colorMap[feature.color].bg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                <feature.icon className="w-8 h-8 text-white" />
+              <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br ${colorMap[feature.color].bg} rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
               
               {/* Content */}
-              <h3 className="text-xl font-black text-gray-900 mb-4 group-hover:text-gray-700 transition-colors duration-300">
+              <h3 className="text-lg sm:text-xl font-black text-gray-900 mb-3 sm:mb-4 group-hover:text-gray-700 transition-colors duration-300">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                 {feature.description}
               </p>
 
@@ -150,18 +150,18 @@ export default function Features() {
 
         {/* Bottom CTA */}
         <motion.div 
-          className="text-center mt-16"
+          className="text-center mt-12 sm:mt-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-8 text-white max-w-4xl mx-auto">
-            <h3 className="text-3xl font-black mb-4">Ready to Experience the Future?</h3>
-            <p className="text-xl text-indigo-100 mb-6">
+          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white max-w-4xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-black mb-3 sm:mb-4">Ready to Experience the Future?</h3>
+            <p className="text-lg sm:text-xl text-indigo-100 mb-4 sm:mb-6">
               Join thousands of businesses already using Advestors to revolutionize their advertising
             </p>
-            <button className="bg-white text-indigo-700 hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="bg-white text-indigo-700 hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
               Get Started in 2 Minutes
             </button>
           </div>
