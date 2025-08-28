@@ -1,57 +1,98 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Upload, Users, BarChart3 } from 'lucide-react';
+import { Upload, Users, BarChart3, Car, Building, Smartphone } from 'lucide-react';
 
 const steps = [
   {
     icon: Upload,
-    title: 'Upload Ad Campaign',
-    description: 'Create your campaign with targeting preferences and budget requirements.',
-    color: 'blue'
+    title: 'List Your Space',
+    description: 'Upload photos of your car windows, balcony, storefront, Instagram bio, or any space you control. Set your price and availability.',
+    color: 'indigo',
+    examples: ['Car Windows', 'Storefronts', 'Instagram Bios', 'Gym TVs']
   },
   {
     icon: Users,
-    title: 'Match with Hosts',
-    description: 'Our smart algorithm connects you with relevant hosts and audiences.',
-    color: 'teal'
+    title: 'Get Matched Instantly',
+    description: 'Our AI instantly connects you with relevant advertisers. No waiting, no negotiations - just automatic matching based on location and audience.',
+    color: 'purple',
+    examples: ['Local Businesses', 'National Brands', 'Startups', 'Influencers']
   },
   {
     icon: BarChart3,
-    title: 'Track & Optimize',
-    description: 'Monitor performance in real-time and optimize for better results.',
-    color: 'green'
+    title: 'Earn Money Daily',
+    description: 'Watch your earnings grow in real-time. Get paid within 24 hours for every impression, click, or conversion your space generates.',
+    color: 'pink',
+    examples: ['$50-$5000/month', 'Passive Income', '24h Payouts', 'No Hidden Fees']
   }
 ];
 
 const colorMap = {
-  blue: { bg: 'bg-blue-600', border: 'border-blue-200', text: 'text-blue-700', light: 'bg-blue-50' },
-  teal: { bg: 'bg-teal-600', border: 'border-teal-200', text: 'text-teal-700', light: 'bg-teal-50' },
-  green: { bg: 'bg-green-600', border: 'border-green-200', text: 'text-green-700', light: 'bg-green-50' }
+  indigo: { bg: 'bg-indigo-600', border: 'border-indigo-200', text: 'text-indigo-700', light: 'bg-indigo-50' },
+  purple: { bg: 'bg-purple-600', border: 'border-purple-200', text: 'text-purple-700', light: 'bg-purple-50' },
+  pink: { bg: 'bg-pink-600', border: 'border-pink-200', text: 'text-pink-700', light: 'bg-pink-50' }
 };
+
+const spaceTypes = [
+  { icon: Car, name: 'Mobile Spaces', count: '25,000+' },
+  { icon: Building, name: 'Physical Locations', count: '15,000+' },
+  { icon: Smartphone, name: 'Digital Assets', count: '10,000+' }
+];
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-6">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Get started in minutes with our streamlined process designed for maximum efficiency.
+          <h2 className="text-5xl font-black text-gray-900 mb-6">
+            Start Earning in <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">3 Simple Steps</span>
+          </h2>
+          <p className="text-2xl text-gray-600 max-w-4xl mx-auto font-medium">
+            From listing your space to earning money - it's that simple. 
+            <span className="text-indigo-700 font-bold"> No experience needed.</span>
           </p>
+        </motion.div>
+
+        {/* Space Types Overview */}
+        <motion.div 
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          viewport={{ once: true }}
+        >
+          <div className="grid md:grid-cols-3 gap-8">
+            {spaceTypes.map((type, index) => (
+              <motion.div 
+                key={index}
+                className="bg-white p-6 rounded-2xl border-2 border-gray-200 text-center hover:shadow-xl transition-all duration-300 cursor-pointer group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <type.icon className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 mb-2">{type.name}</h4>
+                <div className="text-3xl font-black text-indigo-600">{type.count}</div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
         <div className="relative">
           {/* Progress line */}
-          <div className="hidden lg:block absolute top-16 left-0 right-0 h-1 bg-gray-200 rounded-full">
+          <div className="hidden lg:block absolute top-20 left-0 right-0 h-2 bg-gray-200 rounded-full">
             <motion.div 
-              className="h-full bg-gradient-to-r from-blue-500 via-teal-500 to-green-500 rounded-full"
+              className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"
               initial={{ width: 0 }}
               whileInView={{ width: '100%' }}
               transition={{ duration: 2, ease: 'easeOut', delay: 0.5 }}
@@ -63,29 +104,63 @@ export default function HowItWorks() {
             {steps.map((step, index) => (
               <motion.div 
                 key={index}
-                className={`${colorMap[step.color].light} p-8 rounded-2xl border ${colorMap[step.color].border} relative`}
+                className={`${colorMap[step.color].light} p-8 rounded-3xl border-2 ${colorMap[step.color].border} relative shadow-xl hover:shadow-2xl transition-all duration-300`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2, ease: 'easeOut' }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5 }}
+                whileHover={{ y: -8 }}
               >
                 {/* Step number */}
-                <div className={`w-12 h-12 ${colorMap[step.color].bg} rounded-xl flex items-center justify-center mb-6 shadow-lg`}>
-                  <step.icon className="w-6 h-6 text-white" />
+                <div className={`w-16 h-16 ${colorMap[step.color].bg} rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
+                  <step.icon className="w-8 h-8 text-white" />
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                <h3 className="text-2xl font-black text-gray-900 mb-4">{step.title}</h3>
+                <p className="text-gray-600 leading-relaxed mb-6 text-lg">{step.description}</p>
+                
+                {/* Examples */}
+                <div className="space-y-2">
+                  {step.examples.map((example, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm">
+                      <div className={`w-2 h-2 ${colorMap[step.color].bg} rounded-full`} />
+                      <span className="text-gray-700 font-medium">{example}</span>
+                    </div>
+                  ))}
+                </div>
                 
                 {/* Step indicator */}
-                <div className={`absolute -top-3 left-8 w-6 h-6 ${colorMap[step.color].bg} rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg`}>
+                <div className={`absolute -top-4 left-8 w-8 h-8 ${colorMap[step.color].bg} rounded-full flex items-center justify-center text-white font-black text-lg shadow-lg`}>
                   {index + 1}
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div 
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          viewport={{ once: true }}
+        >
+          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-8 text-white max-w-4xl mx-auto">
+            <h3 className="text-3xl font-black mb-4">Ready to Turn Your Space Into Cash?</h3>
+            <p className="text-xl text-indigo-100 mb-6">
+              Join 50,000+ hosts already earning passive income with Advestors
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-white text-indigo-700 hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                List My Space Now
+              </button>
+              <button className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 backdrop-blur-sm">
+                See How Much I Can Earn
+              </button>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
