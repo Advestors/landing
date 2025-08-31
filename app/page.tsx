@@ -5,16 +5,18 @@ import SocialProof from '@/components/SocialProof';
 import Features from '@/components/Features';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
+import CompaniesCarousel from '@/components/CompaniesCarousel';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       <Hero />
-      <ValueProposition />
+      <CompaniesCarousel />
+      {/* <ValueProposition />
       <HowItWorks />
       <SocialProof />
       <Features />
-      <CTASection />
+      <CTASection /> */}
       <Footer />
     </main>
   );

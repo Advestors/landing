@@ -1,13 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Play, Zap, TrendingUp, Users } from 'lucide-react';
+import { ArrowRight, Zap, TrendingUp, Users, Globe, Target, CheckCircle, Play } from 'lucide-react';
 import HeroViz from './HeroViz';
 import Logo from './ui/logo';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden pt-20">
       {/* Background gradient mesh */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-100/20 via-transparent to-purple-100/20" />
       
@@ -53,13 +54,13 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
             >
               <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Your Audience.
+                Connect.
               </span>{' '}
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Your Space.
+                Collaborate.
               </span>{' '}
               <span className="bg-gradient-to-r from-pink-600 to-indigo-600 bg-clip-text text-transparent">
-                Your Growth.
+                Grow.
               </span>
             </motion.h1>
             
@@ -69,43 +70,77 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
             >
-              Rent ANY space for ads. Car windows, balconies, Instagram bios, gym TVs, delivery trucks - 
-              <span className="font-bold text-indigo-700"> everything is ad space now.</span>
+              The revolutionary marketplace where advertisers and hosts collaborate to maximize exposure and revenue. 
+              <span className="font-bold text-indigo-700"> Everything is ad space now.</span>
             </motion.p>
 
-            {/* Social proof stats */}
+            {/* Key benefits */}
             <motion.div 
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-8 text-sm text-gray-600"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
             >
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-green-500" />
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <CheckCircle className="w-4 h-4 text-green-500" />
                 <span><span className="font-bold text-gray-900">50,000+</span> active hosts</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-blue-500" />
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <CheckCircle className="w-4 h-4 text-green-500" />
                 <span><span className="font-bold text-gray-900">$2.5M+</span> paid to hosts</span>
+              </div>
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <CheckCircle className="w-4 h-4 text-green-500" />
+                <span><span className="font-bold text-gray-900">98%</span> satisfaction rate</span>
+              </div>
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <CheckCircle className="w-4 h-4 text-green-500" />
+                <span><span className="font-bold text-gray-900">Global</span> reach</span>
               </div>
             </motion.div>
             
+            {/* Audience Selection Buttons */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
+              className="space-y-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
             >
-              <button className="group bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 sm:px-8 lg:px-10 py-4 sm:py-5 rounded-2xl font-bold text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 shadow-2xl hover:shadow-indigo-500/25 transform hover:scale-105 hover:shadow-2xl">
-                <span className="hidden sm:inline">Start Earning Money Now</span>
-                <span className="sm:hidden">Start Earning Now</span>
-                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform duration-300" />
-              </button>
+              <p className="text-lg font-semibold text-gray-800">Choose your path:</p>
               
-              <button className="group border-2 border-gray-300 hover:border-purple-400 text-gray-700 hover:text-purple-700 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 rounded-2xl font-bold text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:shadow-xl bg-white/90 backdrop-blur-sm hover:bg-purple-50">
-                <Play className="w-5 h-5 sm:w-6 sm:h-6" />
-                <span className="hidden sm:inline">Watch Demo</span>
-                <span className="sm:hidden">Demo</span>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                {/* Advestors Button (Hosts) */}
+                <Link href="/advestors" className="group">
+                  <button className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 lg:px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all duration-300 shadow-2xl hover:shadow-indigo-500/25 transform hover:scale-105 hover:shadow-2xl">
+                    <Target className="w-6 h-6" />
+                    <span>I'm an Advestor</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                  </button>
+                  <p className="text-sm text-gray-600 mt-2 text-center sm:text-left">Own space? Start earning money</p>
+                </Link>
+                
+                {/* Advertisers Button */}
+                <Link href="/advertisers" className="group">
+                  <button className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 lg:px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all duration-300 shadow-2xl hover:shadow-pink-500/25 transform hover:scale-105 hover:shadow-2xl">
+                    <Globe className="w-6 h-6" />
+                    <span>I'm an Advertiser</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                  </button>
+                  <p className="text-sm text-gray-600 mt-2 text-center sm:text-left">Need exposure? Find your audience</p>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Demo button */}
+            <motion.div 
+              className="flex justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
+            >
+              <button className="group inline-flex items-center gap-2 text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300">
+                <Play className="w-5 h-5" />
+                <span>Watch 2-minute demo</span>
               </button>
             </motion.div>
 

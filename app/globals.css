@@ -48,6 +48,7 @@
 }
 
 .animate-scroll-horizontal:hover,
-.animate-scroll-vertical:hover {
+.animate-scroll-vertical:hover,
+.group:hover .animate-scroll-horizontal {
   animation-play-state: paused;
 }

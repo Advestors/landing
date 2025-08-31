@@ -1,0 +1,78 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { Upload, Target, DollarSign, TrendingUp } from 'lucide-react';
+
+export default function AdvestorsHowItWorks() {
+  const steps = [
+    {
+      icon: Upload,
+      title: "List Your Space",
+      description: "Upload photos and describe your space. Set your rates and availability.",
+      color: "text-green-600"
+    },
+    {
+      icon: Target,
+      title: "Get Matched",
+      description: "We connect you with relevant advertisers looking for your type of space.",
+      color: "text-blue-600"
+    },
+    {
+      icon: DollarSign,
+      title: "Earn Money",
+      description: "Receive payments monthly. Track your earnings in real-time.",
+      color: "text-purple-600"
+    },
+    {
+      icon: TrendingUp,
+      title: "Scale Up",
+      description: "Add more spaces and increase your passive income streams.",
+      color: "text-pink-600"
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-4 sm:px-6">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+            How It <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Works</span>
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Start earning money from your spaces in just 4 simple steps
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.title}
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <div className="relative mb-6">
+                <div className={`w-20 h-20 rounded-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center mx-auto`}>
+                  <step.icon className={`w-10 h-10 ${step.color}`} />
+                </div>
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-green-200 to-blue-200 transform translate-x-4"></div>
+                )}
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{step.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{step.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
