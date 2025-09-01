@@ -60,7 +60,7 @@ export default function ValueProposition() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-            Why <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Advestors</span> is Revolutionary
+            Why <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Advestor</span> is innovative
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto">
             We're not just another advertising platform. We're redefining what advertising means by turning every space into an opportunity for connection and growth.

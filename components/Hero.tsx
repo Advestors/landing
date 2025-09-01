@@ -21,7 +21,7 @@ export default function Hero() {
       >
         <Logo size="xl" className="sm:size-2xl lg:size-2xl drop-shadow-lg" />
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-          Advestors
+          Advestor
         </h1>
       </motion.div>
       
@@ -57,10 +57,10 @@ export default function Hero() {
                 Connect.
               </span>{' '}
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Collaborate.
+                Convert.
               </span>{' '}
               <span className="bg-gradient-to-r from-pink-600 to-indigo-600 bg-clip-text text-transparent">
-                Grow.
+              Capitalize.
               </span>
             </motion.h1>
             
@@ -70,7 +70,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
             >
-              The revolutionary marketplace where advertisers and hosts collaborate to maximize exposure and revenue. 
+              The innovative platform where advertisers and hosts collaborate to maximize exposure and revenue. 
               <span className="font-bold text-indigo-700"> Everything is ad space now.</span>
             </motion.p>
 
@@ -113,10 +113,10 @@ export default function Hero() {
                 <Link href="/advestors" className="group">
                   <button className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 lg:px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all duration-300 shadow-2xl hover:shadow-indigo-500/25 transform hover:scale-105 hover:shadow-2xl">
                     <Target className="w-6 h-6" />
-                    <span>I'm an Advestor</span>
+                    <span>I'm an Advestor Host</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
                   </button>
-                  <p className="text-sm text-gray-600 mt-2 text-center sm:text-left">Own space? Start earning money</p>
+                  <p className="text-sm text-gray-600 mt-2 text-center sm:text-left">Got Space? Get Paid!</p>
                 </Link>
                 
                 {/* Advertisers Button */}
@@ -126,7 +126,7 @@ export default function Hero() {
                     <span>I'm an Advertiser</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
                   </button>
-                  <p className="text-sm text-gray-600 mt-2 text-center sm:text-left">Need exposure? Find your audience</p>
+                  <p className="text-sm text-gray-600 mt-2 text-center sm:text-left">Need more Customers? Get noticed!</p>
                 </Link>
               </div>
             </motion.div>

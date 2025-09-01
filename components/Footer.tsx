@@ -42,11 +42,11 @@ export default function Footer() {
             <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3">
               <Logo size="lg" className="sm:size-xl lg:size-xl drop-shadow-lg" />
               <h3 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                Advestors
+              Advestor
               </h3>
             </div>
             <p className="text-gray-300 leading-relaxed text-sm sm:text-base lg:text-lg">
-              The revolutionary marketplace that's turning every surface, screen, and space into a revenue-generating advertising opportunity.
+              The innovative platform that's turning every surface, screen, and space into a revenue-generating advertising opportunity.
             </p>
             
             {/* Trustpilot Rating */}
@@ -191,11 +191,14 @@ export default function Footer() {
             <div className="flex items-center justify-center md:justify-end gap-2 mb-2">
               <Logo size="sm" className="opacity-70" />
               <p className="text-gray-400 text-xs sm:text-sm">
-                © 2025 Advestors. All rights reserved.
+                © 2025 Advestor. All rights reserved.
               </p>
             </div>
             <p className="text-gray-500 text-xs">
               🚀 Built for the future of advertising
+            </p>
+            <p className="text-gray-400 text-xs mt-1">
+              Powered by <span className="font-semibold text-white">Advestor</span>
             </p>
           </div>
         </motion.div>

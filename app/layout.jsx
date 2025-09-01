@@ -9,10 +9,10 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: 'Advestors - Connect Businesses with the Right Audiences',
+  title: 'Advestor - Connect Businesses with the Right Audiences',
   description: 'The marketplace where advertisers and hosts collaborate to maximize exposure and revenue. Get early access today.',
   keywords: 'advertising, marketplace, hosts, advertisers, digital marketing, revenue',
-  authors: [{ name: 'Advestors' }],
+  authors: [{ name: 'Advestor' }],
   viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow'
 };

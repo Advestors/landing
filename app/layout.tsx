@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Advestors - Turn Every Surface Into Revenue',
-  description: 'The revolutionary marketplace that\'s turning every surface, screen, and space into a revenue-generating advertising opportunity.',
+  title: 'Advestor - Turn Every Surface Into Revenue',
+  description: 'The enterprising marketplace where Advertisers gain exposure and Advestor Hosts turn space into income',
   icons: {
     icon: '/images/Logo.png',
     shortcut: '/images/Logo.png',

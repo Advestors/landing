@@ -98,7 +98,7 @@ export default function CompaniesCarousel() {
             Trusted by Industry Leaders
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Join thousands of successful brands already using Advestors to reach their audiences
+            Join thousands of successful brands already using Advestor to reach their audiences
           </p>
         </motion.div>
 
