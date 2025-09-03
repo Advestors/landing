@@ -89,15 +89,21 @@ export default function AdvertisersHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
             >
-              <button className="group bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 lg:px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all duration-300 shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 hover:shadow-2xl">
+              <button 
+                className="group bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 lg:px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all duration-300 shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 hover:shadow-2xl"
+                onClick={() => window.location.href = '/contact'}
+              >
                 <Building2 className="w-6 h-6" />
                 <span>Start Advertising Now</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
               </button>
               
-              <button className="group border-2 border-gray-300 hover:border-purple-400 text-gray-700 hover:text-purple-700 px-8 lg:px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-xl bg-white/90 backdrop-blur-sm hover:bg-purple-50">
+              {/* <button 
+                className="group border-2 border-gray-300 hover:border-purple-400 text-gray-700 hover:text-purple-700 px-8 lg:px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-xl bg-white/90 backdrop-blur-sm hover:bg-purple-50"
+                onClick={() => window.location.href = '/contact'}
+              >
                 <span>View Spaces</span>
-              </button>
+              </button> */}
             </motion.div>
 
             {/* Trust indicators */}

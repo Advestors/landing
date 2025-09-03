@@ -61,6 +61,7 @@ export default function CTASection() {
             className="group bg-white text-indigo-700 hover:text-indigo-800 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-black text-lg sm:text-xl flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 shadow-2xl hover:shadow-white/25 transform hover:scale-105"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => window.location.href = '/contact'}
           >
             <Zap className="w-5 h-5 sm:w-6 sm:h-6" />
             <span className="hidden sm:inline">Start Earning Money Now</span>
@@ -72,6 +73,7 @@ export default function CTASection() {
             className="group border-2 border-white/30 text-white hover:bg-white/10 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-black text-lg sm:text-xl flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 backdrop-blur-sm hover:border-white/50 hover:shadow-xl"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => window.location.href = '/contact'}
           >
             <Users className="w-5 h-5 sm:w-6 sm:h-6" />
             <span className="hidden sm:inline">Advertise My Business</span>
@@ -102,7 +104,10 @@ export default function CTASection() {
                   placeholder="Enter your email" 
                   className="flex-1 px-4 sm:px-6 py-3 sm:py-4 rounded-xl border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-base sm:text-lg"
                 />
-                <button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-black text-base sm:text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <button 
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-black text-base sm:text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  onClick={() => window.location.href = '/contact'}
+                >
                   Claim Offer
                 </button>
               </div>
@@ -136,7 +141,10 @@ export default function CTASection() {
           <p className="text-indigo-100 text-base sm:text-lg mb-3 sm:mb-4 px-4 sm:px-0">
             <span className="font-bold">Don't wait.</span> Every day you're not on Advestors, you're losing money.
           </p>
-          <button className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-black text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl">
+          <button 
+            className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-black text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl"
+            onClick={() => window.location.href = '/contact'}
+          >
             🚀 Join the Revolution Now
           </button>
         </motion.div>

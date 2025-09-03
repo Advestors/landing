@@ -35,12 +35,18 @@ export default function AdvestorsCTASection() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="group bg-white text-green-600 hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105">
+            <button 
+              className="group bg-white text-green-600 hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+              onClick={() => window.location.href = '/contact'}
+            >
               <span>Start Earning Today</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
             </button>
             
-            <button className="group border-2 border-white/30 hover:border-white text-white hover:bg-white/10 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300">
+            <button 
+              className="group border-2 border-white/30 hover:border-white text-white hover:bg-white/10 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300"
+              onClick={() => window.location.href = '/contact'}
+            >
               Learn More
             </button>
           </div>

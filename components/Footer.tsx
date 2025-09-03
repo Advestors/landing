@@ -153,12 +153,14 @@ export default function Footer() {
               Get exclusive access to new features, success stories, and money-making opportunities.
             </p>
             <div className="space-y-3">
-              <input 
+              {/* <input 
                 type="email" 
                 placeholder="Enter your email" 
                 className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
-              />
-              <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 text-sm sm:text-base">
+              /> */}
+              <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 text-sm sm:text-base"
+              onClick={() => window.location.href = '/contact'}
+              >
                 <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
                 Get Early Access
               </button>

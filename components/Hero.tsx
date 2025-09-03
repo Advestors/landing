@@ -8,13 +8,13 @@ import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden">
       {/* Background gradient mesh */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-100/20 via-transparent to-purple-100/20" />
       
       {/* Logo at the top */}
       <motion.div 
-        className="absolute top-4 sm:top-6 lg:top-8 left-4 sm:left-6 lg:left-8 z-20 flex items-center gap-2 sm:gap-3 lg:gap-4"
+        className="absolute top-4 sm:top-6 lg:top-8 left-4 sm:left-6 lg:left-8 z-20 flex items-center gap-2 sm:gap-3 lg:gap-4 "
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -30,7 +30,7 @@ export default function Hero() {
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left content */}
           <motion.div 
-            className="space-y-6 sm:space-y-8 lg:pr-8 text-center lg:text-left order-2 lg:order-1"
+            className="pt-6 space-y-6 sm:space-y-8 text-center lg:text-left order-2 lg:order-2"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -138,7 +138,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
             >
-              <button className="group inline-flex items-center gap-2 text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300">
+              <button className="group inline-flex items-center gap-2 text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300"
+              onClick={() => window.location.href = '/demo'}
+              >
                 <Play className="w-5 h-5" />
                 <span>Watch 2-minute demo</span>
               </button>
