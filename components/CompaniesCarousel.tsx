@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function CompaniesCarousel() {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,76 +10,83 @@ export default function CompaniesCarousel() {
   const companies = [
     { 
       name: 'Nike', 
-      logo: 'NIKE',
+      logoUrl: 'https://logo.clearbit.com/nike.com',
       color: '#000000',
       tier: 'premium' 
     },
     { 
       name: 'Coca-Cola', 
-      logo: 'COCA-COLA',
+      logoUrl: 'https://logo.clearbit.com/coca-cola.com',
       color: '#E31837',
       tier: 'premium' 
     },
     { 
       name: 'Tesla', 
-      logo: 'TESLA',
+      logoUrl: 'https://logo.clearbit.com/tesla.com',
       color: '#E31937',
       tier: 'premium' 
     },
     { 
       name: 'Netflix', 
-      logo: 'NETFLIX',
+      logoUrl: 'https://logo.clearbit.com/netflix.com',
       color: '#E50914',
       tier: 'premium' 
     },
     { 
       name: 'Apple', 
-      logo: 'APPLE',
+      logoUrl: 'https://logo.clearbit.com/apple.com',
       color: '#000000',
       tier: 'premium' 
     },
     { 
       name: 'Google', 
-      logo: 'GOOGLE',
+      logoUrl: 'https://logo.clearbit.com/google.com',
       color: '#4285F4',
       tier: 'premium' 
     },
     { 
       name: 'Microsoft', 
-      logo: 'MICROSOFT',
+      logoUrl: 'https://logo.clearbit.com/microsoft.com',
       color: '#00A4EF',
       tier: 'premium' 
     },
     { 
       name: 'Amazon', 
-      logo: 'AMAZON',
+      logoUrl: 'https://logo.clearbit.com/amazon.com',
       color: '#FF9900',
       tier: 'premium' 
     },
     { 
       name: 'Meta', 
-      logo: 'META',
+      logoUrl: 'https://logo.clearbit.com/meta.com',
       color: '#0668E1',
       tier: 'premium' 
     },
     { 
       name: 'Spotify', 
-      logo: 'SPOTIFY',
+      logoUrl: 'https://logo.clearbit.com/spotify.com',
       color: '#1DB954',
       tier: 'premium' 
     },
     { 
       name: 'Uber', 
-      logo: 'UBER',
+      logoUrl: 'https://logo.clearbit.com/uber.com',
       color: '#000000',
       tier: 'premium' 
     },
     { 
       name: 'Airbnb', 
-      logo: 'AIRBNB',
+      logoUrl: 'https://logo.clearbit.com/airbnb.com',
       color: '#FF5A5F',
       tier: 'premium' 
-    }
+    },
+    { 
+      name: 'Wolt', 
+      logoUrl: 'https://logo.clearbit.com/wolt.com',
+      color: '#000000',
+      tier: 'premium' 
+    },
+    
   ];
 
   useEffect(() => {
@@ -119,19 +127,28 @@ export default function CompaniesCarousel() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <div className="relative w-32 h-16 flex items-center justify-center">
-                    {/* B&W Logo (default) */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-lg font-bold text-gray-400 filter grayscale opacity-70 group-hover/company:opacity-0 transition-all duration-300">
-                        {company.logo}
-                      </span>
-                    </div>
-                    {/* Color Logo (on hover) */}
-                    <div className="absolute inset-0 flex items-center justify-center">
+                    {/* Real Logo with hover effect */}
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <Image
+                        src={company.logoUrl}
+                        alt={`${company.name} logo`}
+                        fill
+                        className="object-contain filter grayscale opacity-70 group-hover/company:opacity-100 group-hover/company:grayscale-0 transition-all duration-300"
+                        sizes="128px"
+                        onError={(e) => {
+                          // Fallback to text if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const fallback = target.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = 'block';
+                        }}
+                      />
+                      {/* Fallback text logo */}
                       <span 
-                        className="text-lg font-bold opacity-0 group-hover/company:opacity-100 transition-all duration-300"
+                        className="text-lg font-bold text-gray-400 filter grayscale opacity-70 group-hover/company:opacity-100 group-hover/company:grayscale-0 transition-all duration-300 hidden"
                         style={{ color: company.color }}
                       >
-                        {company.logo}
+                        {company.name.toUpperCase()}
                       </span>
                     </div>
                   </div>
@@ -150,19 +167,28 @@ export default function CompaniesCarousel() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <div className="relative w-32 h-16 flex items-center justify-center">
-                    {/* B&W Logo (default) */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-lg font-bold text-gray-400 filter grayscale opacity-70 group-hover/company:opacity-0 transition-all duration-300">
-                        {company.logo}
-                      </span>
-                    </div>
-                    {/* Color Logo (on hover) */}
-                    <div className="absolute inset-0 flex items-center justify-center">
+                    {/* Real Logo with hover effect */}
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <Image
+                        src={company.logoUrl}
+                        alt={`${company.name} logo`}
+                        fill
+                        className="object-contain filter grayscale opacity-70 group-hover/company:opacity-100 group-hover/company:grayscale-0 transition-all duration-300"
+                        sizes="128px"
+                        onError={(e) => {
+                          // Fallback to text if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const fallback = target.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = 'block';
+                        }}
+                      />
+                      {/* Fallback text logo */}
                       <span 
-                        className="text-lg font-bold opacity-0 group-hover/company:opacity-100 transition-all duration-300"
+                        className="text-lg font-bold text-gray-400 filter grayscale opacity-70 group-hover/company:opacity-100 group-hover/company:grayscale-0 transition-all duration-300 hidden"
                         style={{ color: company.color }}
                       >
-                        {company.logo}
+                        {company.name.toUpperCase()}
                       </span>
                     </div>
                   </div>

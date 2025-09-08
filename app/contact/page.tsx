@@ -41,16 +41,154 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    // Required field validation
+    if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
+    if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    if (!formData.customerType) newErrors.customerType = 'Please select your role';
+    if (!formData.interestType) newErrors.interestType = 'Please select your interest';
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (formData.email && !emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    // Phone validation (if provided)
+    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+    if (formData.phone && !phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    
+    // Validate form before submission
+    if (!validateForm()) {
+      console.log('Form validation failed:', errors);
+      return;
+    }
 
-    // Simulate form submission
+    setIsSubmitting(true);
+    setErrors({});
+
+    // Create comprehensive JSON object with all form data
+    const formDataJson = {
+      personalInfo: {
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        email: formData.email.trim().toLowerCase(),
+        phone: formData.phone.trim(),
+        company: formData.company.trim(),
+        location: formData.location.trim()
+      },
+      preferences: {
+        customerType: formData.customerType,
+        interestType: formData.interestType,
+        budget: formData.budget || null,
+        hearAboutUs: formData.hearAboutUs || null
+      },
+      message: formData.message.trim(),
+      submissionInfo: {
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer || 'Direct',
+        formVersion: '1.0',
+        url: window.location.href,
+        language: navigator.language,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      },
+      validation: {
+        isEmailValid: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email),
+        isPhoneValid: formData.phone ? /^[\+]?[1-9][\d]{0,15}$/.test(formData.phone.replace(/\s/g, '')) : true,
+        hasRequiredFields: !!(formData.firstName && formData.lastName && formData.email && formData.customerType && formData.interestType)
+      }
+    };
+
+    // Log the complete JSON object to console with detailed formatting
+    console.log('=== CONTACT FORM SUBMISSION ===');
+    console.log('📋 Form Data JSON (Pretty):', JSON.stringify(formDataJson, null, 2));
+    console.log('📊 Raw Form Data Object:', formDataJson);
+    console.log('📈 Form Statistics:', {
+      totalFields: Object.keys(formData).length,
+      filledFields: Object.values(formData).filter(value => value && value.trim()).length,
+      completionRate: `${Math.round((Object.values(formData).filter(value => value && value.trim()).length / Object.keys(formData).length) * 100)}%`
+    });
+    console.log('================================');
+
+    // Create query parameters from form data
+    const queryParams = new URLSearchParams({
+      // Personal Info
+      firstName: formData.firstName.trim(),
+      lastName: formData.lastName.trim(),
+      email: formData.email.trim().toLowerCase(),
+      phone: formData.phone.trim() || '',
+      company: formData.company.trim() || '',
+      location: formData.location.trim() || '',
+      
+      // Preferences
+      customerType: formData.customerType,
+      interestType: formData.interestType,
+      budget: formData.budget || '',
+      hearAboutUs: formData.hearAboutUs || '',
+      
+      // Message
+      message: formData.message.trim() || '',
+      
+      // Submission Info
+      timestamp: formDataJson.submissionInfo.timestamp,
+      userAgent: formDataJson.submissionInfo.userAgent,
+      referrer: formDataJson.submissionInfo.referrer,
+      url: formDataJson.submissionInfo.url,
+      language: formDataJson.submissionInfo.language,
+      timezone: formDataJson.submissionInfo.timezone,
+      formVersion: formDataJson.submissionInfo.formVersion,
+      
+      // Validation
+      isEmailValid: formDataJson.validation.isEmailValid.toString(),
+      isPhoneValid: formDataJson.validation.isPhoneValid.toString(),
+      hasRequiredFields: formDataJson.validation.hasRequiredFields.toString()
+    });
+
+    // Construct webhook URL with query parameters
+    const webhookUrl = `https://n8n.advestor.io/webhook/dc4f9118-c09d-4503-aa1f-d9c8f4145432?${queryParams.toString()}`;
+    
+    console.log('🔗 Webhook URL:', webhookUrl);
+    console.log('📤 Sending data to webhook...');
+
+    try {
+      // Send data to webhook
+      const response = await fetch(webhookUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        console.log('✅ Webhook sent successfully!');
+        console.log('📊 Response status:', response.status);
+      } else {
+        console.error('❌ Webhook failed:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('❌ Error sending webhook:', error);
+    }
+
+    // Simulate form submission delay
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     setIsSubmitting(false);
@@ -192,9 +330,14 @@ export default function ContactPage() {
                           required
                           value={formData.firstName}
                           onChange={(e) => handleInputChange('firstName', e.target.value)}
-                          className="h-10 text-sm border border-gray-200 focus:border-indigo-400 rounded-lg"
+                          className={`h-10 text-sm border rounded-lg ${
+                            errors.firstName ? 'border-red-400 focus:border-red-500' : 'border-gray-200 focus:border-indigo-400'
+                          }`}
                           placeholder="Enter your first name"
                         />
+                        {errors.firstName && (
+                          <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
+                        )}
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-600 mb-1">
@@ -205,9 +348,14 @@ export default function ContactPage() {
                           required
                           value={formData.lastName}
                           onChange={(e) => handleInputChange('lastName', e.target.value)}
-                          className="h-10 text-sm border border-gray-200 focus:border-indigo-400 rounded-lg"
+                          className={`h-10 text-sm border rounded-lg ${
+                            errors.lastName ? 'border-red-400 focus:border-red-500' : 'border-gray-200 focus:border-indigo-400'
+                          }`}
                           placeholder="Enter your last name"
                         />
+                        {errors.lastName && (
+                          <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
+                        )}
                       </div>
                     </div>
 
@@ -221,9 +369,14 @@ export default function ContactPage() {
                           required
                           value={formData.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
-                          className="h-10 text-sm border border-gray-200 focus:border-indigo-400 rounded-lg"
+                          className={`h-10 text-sm border rounded-lg ${
+                            errors.email ? 'border-red-400 focus:border-red-500' : 'border-gray-200 focus:border-indigo-400'
+                          }`}
                           placeholder="your@email.com"
                         />
+                        {errors.email && (
+                          <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                        )}
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-600 mb-1">
@@ -233,9 +386,14 @@ export default function ContactPage() {
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => handleInputChange('phone', e.target.value)}
-                          className="h-10 text-sm border border-gray-200 focus:border-indigo-400 rounded-lg"
+                          className={`h-10 text-sm border rounded-lg ${
+                            errors.phone ? 'border-red-400 focus:border-red-500' : 'border-gray-200 focus:border-indigo-400'
+                          }`}
                           placeholder="+1 (555) 123-4567"
                         />
+                        {errors.phone && (
+                          <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+                        )}
                       </div>
                     </div>
 
@@ -305,6 +463,9 @@ export default function ContactPage() {
                         </label>
                       </div>
                     </RadioGroup>
+                    {errors.customerType && (
+                      <p className="text-red-500 text-xs mt-2">{errors.customerType}</p>
+                    )}
                   </div>
 
                   {/* Interest Type */}
@@ -369,6 +530,9 @@ export default function ContactPage() {
                         </SelectItem>
                       </SelectContent>
                     </Select>
+                    {errors.interestType && (
+                      <p className="text-red-500 text-xs mt-2">{errors.interestType}</p>
+                    )}
                   </div>
 
                   {/* Budget Range (for advertisers) */}

@@ -40,7 +40,7 @@
 }
 
 .animate-scroll-horizontal {
-  animation: scroll-horizontal 30s linear infinite;
+  animation: scroll-horizontal 12s linear infinite;
 }
 
 .animate-scroll-vertical {
@@ -51,4 +51,39 @@
 .animate-scroll-vertical:hover,
 .group:hover .animate-scroll-horizontal {
   animation-play-state: paused;
+}
+
+/* Company Logo Hover Effects - Production Ready */
+.company-logo {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: filter, opacity, transform;
+}
+
+.company-logo:hover {
+  transform: scale(1.05);
+}
+
+/* Ensure logos load smoothly */
+.company-logo img {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Fallback for when logos fail to load */
+.company-logo-fallback {
+  display: none;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Optimize for different screen sizes */
+@media (max-width: 640px) {
+  .company-logo {
+    transform: scale(0.9);
+  }
+  
+  .company-logo:hover {
+    transform: scale(0.95);
+  }
 }
