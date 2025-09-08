@@ -44,7 +44,17 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => {
+      const newData = { ...prev, [field]: value };
+      
+      // Clear interest type and budget when user type changes
+      if (field === 'customerType') {
+        newData.interestType = '';
+        newData.budget = '';
+      }
+      
+      return newData;
+    });
   };
 
   const validateForm = () => {
@@ -462,6 +472,19 @@ export default function ContactPage() {
                           </div>
                         </label>
                       </div>
+
+                      <div className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:border-indigo-300 transition-colors cursor-pointer">
+                        <RadioGroupItem value="other" id="other" />
+                        <label htmlFor="other" className="flex items-center gap-2 cursor-pointer flex-1">
+                          <div className="w-8 h-8 bg-gradient-to-br from-gray-500 to-slate-600 rounded-lg flex items-center justify-center">
+                            <Handshake className="w-4 h-4 text-white" />
+                          </div>
+                          <div>
+                            <div className="font-semibold text-gray-900 text-sm">Other</div>
+                            <div className="text-xs text-gray-600">Partnership, investor, or other</div>
+                          </div>
+                        </label>
+                      </div>
                     </RadioGroup>
                     {errors.customerType && (
                       <p className="text-red-500 text-xs mt-2">{errors.customerType}</p>
@@ -480,54 +503,115 @@ export default function ContactPage() {
                         <SelectValue placeholder="Select your primary interest" />
                       </SelectTrigger>
                       <SelectContent className="bg-white">
-                        <SelectItem
-                          value="early-access"
-                          className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
-                        >
-                          Early Access Registration
-                        </SelectItem>
-                        <SelectItem
-                          value="investment"
-                          className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
-                        >
-                          Investment Opportunity
-                        </SelectItem>
-                        <SelectItem
-                          value="partnership"
-                          className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
-                        >
-                          Partnership
-                        </SelectItem>
-                        <SelectItem
-                          value="advertising"
-                          className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
-                        >
-                          Advertising Campaign
-                        </SelectItem>
-                        <SelectItem
-                          value="hosting"
-                          className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
-                        >
-                          Hosting Spaces
-                        </SelectItem>
-                        <SelectItem
-                          value="consultation"
-                          className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
-                        >
-                          Free Consultation
-                        </SelectItem>
-                        <SelectItem
-                          value="demo"
-                          className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
-                        >
-                          Product Demo
-                        </SelectItem>
-                        <SelectItem
-                          value="other"
-                          className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
-                        >
-                          Other
-                        </SelectItem>
+                        {formData.customerType === 'advertiser' ? (
+                          // Advertiser interest options
+                          <>
+                            <SelectItem
+                              value="advertising"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Advertising Campaign
+                            </SelectItem>
+                            <SelectItem
+                              value="early-access"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Early Access Registration
+                            </SelectItem>
+                            <SelectItem
+                              value="consultation"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Free Consultation
+                            </SelectItem>
+                            <SelectItem
+                              value="demo"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Product Demo
+                            </SelectItem>
+                            <SelectItem
+                              value="partnership"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Partnership
+                            </SelectItem>
+                            <SelectItem
+                              value="other"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Other
+                            </SelectItem>
+                          </>
+                        ) : formData.customerType === 'host' ? (
+                          // Host (Advestor) interest options
+                          <>
+                            <SelectItem
+                              value="hosting"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Hosting Spaces
+                            </SelectItem>
+                            <SelectItem
+                              value="early-access"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Early Access Registration
+                            </SelectItem>
+                            <SelectItem
+                              value="consultation"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Free Consultation
+                            </SelectItem>
+                            <SelectItem
+                              value="demo"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Product Demo
+                            </SelectItem>
+                            <SelectItem
+                              value="partnership"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Partnership
+                            </SelectItem>
+                            <SelectItem
+                              value="other"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Other
+                            </SelectItem>
+                          </>
+                        ) : (
+                          // Other user type interest options
+                          <>
+                            <SelectItem
+                              value="investment"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Investment Opportunity
+                            </SelectItem>
+                            <SelectItem
+                              value="partnership"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Partnership
+                            </SelectItem>
+                            <SelectItem
+                              value="consultation"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Free Consultation
+                            </SelectItem>
+                            <SelectItem
+                              value="other"
+                              className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                            >
+                              Other
+                            </SelectItem>
+                          </>
+                        )}
                       </SelectContent>
                     </Select>
                     {errors.interestType && (
@@ -535,8 +619,8 @@ export default function ContactPage() {
                     )}
                   </div>
 
-                  {/* Budget Range (for advertisers) */}
-                  {formData.customerType === 'advertiser' && (
+                  {/* Budget Range - Show only for advertisers with advertising campaign interest */}
+                  {formData.customerType === 'advertiser' && formData.interestType === 'advertising' && (
                     <div className="space-y-6">
                       <h3 className="text-xl font-bold text-gray-900 flex items-center gap-3">
                         <DollarSign className="w-6 h-6 text-indigo-600" />
@@ -545,20 +629,14 @@ export default function ContactPage() {
 
                       <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
                         <SelectTrigger className="h-12 text-lg border-2 border-gray-200 focus:border-indigo-500 rounded-xl">
-                          <SelectValue placeholder="Select your budget range" />
+                          <SelectValue placeholder="Select your advertising budget range" />
                         </SelectTrigger>
                         <SelectContent className="bg-white">
                           <SelectItem
-                            value="under-500"
+                            value="under-1000"
                             className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
                           >
-                            Under $500
-                          </SelectItem>
-                          <SelectItem
-                            value="500-1000"
-                            className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
-                          >
-                            $500 - $1,000
+                            Under $1,000
                           </SelectItem>
                           <SelectItem
                             value="1000-5000"
@@ -567,22 +645,34 @@ export default function ContactPage() {
                             $1,000 - $5,000
                           </SelectItem>
                           <SelectItem
-                            value="5000-10000"
+                            value="5000-15000"
                             className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
                           >
-                            $5,000 - $10,000
+                            $5,000 - $15,000
                           </SelectItem>
                           <SelectItem
-                            value="10000-25000"
+                            value="15000-50000"
                             className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
                           >
-                            $10,000 - $25,000
+                            $15,000 - $50,000
                           </SelectItem>
                           <SelectItem
-                            value="over-25000"
+                            value="50000-100000"
                             className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
                           >
-                            Over $25,000
+                            $50,000 - $100,000
+                          </SelectItem>
+                          <SelectItem
+                            value="100000-250000"
+                            className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                          >
+                            $100,000 - $250,000
+                          </SelectItem>
+                          <SelectItem
+                            value="over-250000"
+                            className="hover:bg-indigo-50 focus:bg-indigo-100 cursor-pointer transition-colors"
+                          >
+                            Over $250,000
                           </SelectItem>
                         </SelectContent>
                       </Select>
