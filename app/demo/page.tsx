@@ -5,12 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { CheckCircle, Mail, User, ArrowRight, Zap, Play } from 'lucide-react';
+import { CheckCircle, Mail, User, ArrowRight, Zap, Play, Phone } from 'lucide-react';
 
 export default function DemoPage() {
   const [formData, setFormData] = useState({
     name: '',
-    email: ''
+    email: '',
+    phone: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +28,41 @@ export default function DemoPage() {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
+    // Create query parameters from form data
+    const queryParams = new URLSearchParams({
+      firstname: formData.name.trim(),
+      email: formData.email.trim().toLowerCase(),
+      phone: formData.phone.trim() || ''
+    });
+
+    // Construct webhook URL with query parameters
+    const webhookUrl = `https://n8n.advestor.io/webhook/b1c58bc9-9630-48ca-90b3-7bc845d31565?${queryParams.toString()}`;
+    
+    console.log('🔗 Demo Webhook URL:', webhookUrl);
+    console.log('📤 Sending demo request to webhook...');
+
+    try {
+      // Send data to webhook
+      const response = await fetch(webhookUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        console.log('✅ Demo webhook sent successfully!');
+        console.log('📊 Response status:', response.status);
+        const responseData = await response.json();
+        console.log('📋 Response data:', responseData);
+      } else {
+        console.error('❌ Demo webhook failed:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('❌ Error sending demo webhook:', error);
+    }
+    
+    // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     setIsSubmitted(true);
@@ -83,7 +118,7 @@ export default function DemoPage() {
               <Button
                 onClick={() => {
                   setIsSubmitted(false);
-                  setFormData({ name: '', email: '' });
+                  setFormData({ name: '', email: '', phone: '' });
                 }}
                 className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-bold text-lg"
               >
@@ -192,6 +227,20 @@ export default function DemoPage() {
                           name="email"
                           className="h-10 text-sm border border-gray-200 focus:border-indigo-400 rounded-lg"
                           placeholder="your@email.com"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-600 mb-1">
+                          Phone Number
+                        </label>
+                        <Input
+                          type="tel"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          name="phone"
+                          className="h-10 text-sm border border-gray-200 focus:border-indigo-400 rounded-lg"
+                          placeholder="+1 (555) 123-4567"
                         />
                       </div>
                     </div>
